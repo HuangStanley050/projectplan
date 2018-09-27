@@ -3,20 +3,22 @@ import React, { Component } from 'react';
 import Navbar from "./components/layout/Navbar";
 import { Switch, Route } from "react-router-dom";
 import DashBoard from "./components/dashboard/Dashboard";
+import ProjectDetails from "./components/projects/ProjectDetails";
 //import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
+    render() {
+        return (
+            <div className="App">
        <Navbar/>
        <Switch>
-        <Route path="/" component={DashBoard} />
+        <Route exact path="/" component={DashBoard} />
+        <Route path="/project/:id" component={ProjectDetails}/>
        </Switch>
        
       </div>
-    );
-  }
+        );
+    }
 }
 
 export default App;
