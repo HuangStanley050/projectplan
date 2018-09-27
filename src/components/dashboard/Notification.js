@@ -3,8 +3,9 @@ import React from "react";
 const Notifications = (props) => {
     return (
         <div>
-             <p>Notifications:</p>
-            </div>
+            <p>Notifications:</p>
+        </div>
+
     );
 };
 
