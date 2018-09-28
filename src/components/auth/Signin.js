@@ -9,11 +9,11 @@ class SignIn extends Component {
         this.setState({
             [e.target.id]: e.target.value
         });
-        console.log(this.state);
+        // console.log(this.state);
     }
     submitHandler = (e) => {
         e.preventDefault();
-        console.log("submit");
+        console.log(this.state);
     }
     render() {
         return (
