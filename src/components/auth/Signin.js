@@ -1,19 +1,34 @@
 import React, { Component } from "react";
 
 class SignIn extends Component {
-    state = {}
+    state = {
+        email: "",
+        password: ""
+    }
+    inputHandler = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        });
+        console.log(this.state);
+    }
+    submitHandler = (e) => {
+        e.preventDefault();
+        console.log("submit");
+    }
     render() {
         return (
             <div className="container">
-                <form onSubmit className="white">
+                <form onSubmit={this.submitHandler} className="white">
                     <h4 className="grey-text">Sign In</h4>
                     <div className="input-field">
                         <label for="email">Email</label>
-                        <input onChange id="email" type="email" />
+                        <br/>
+                        <input onChange={this.inputHandler} id="email" type="email" />
                     </div>
                     <div className="input-field">
                         <label for="password">Password</label>
-                        <input onChange id="password" type="password"/>
+                        <br/>
+                        <input onChange={this.inputHandler} id="password" type="password"/>
                     </div>
                     <div className="input-field">
                      <button className="btn grey z-depth-0">Login</button>
