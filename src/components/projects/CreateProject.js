@@ -21,12 +21,12 @@ class CreateProject extends Component {
                 <form onSubmit={this.submitHandler} className="white">
                     <h4 className="grey-text">Create Project</h4>
                     <div className="input-field">
-                        <label for="title">Title</label>
+                        <label htmlFor="title">Title</label>
                         <br/>
                         <input onChange={this.inputHandler} id="title" type="text" />
                     </div>
                     <div className="input-field">
-                        <label for="content">Project Content</label>
+                        <label htmlFor="content">Project Content</label>
                         <br/>
                         <textarea onChange={this.inputHandler} id="content" className="materialize-textarea"/>
                     </div>

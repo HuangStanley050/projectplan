@@ -1,13 +1,16 @@
 import React from "react";
 import ProjectSummary from "./ProjectSummary";
 
-const ProjectList = (props) => {
+const ProjectList = ({ data }) => { //destructure data property from props passed down
+    console.log(data);
     return (
         <div className="project-list section">
-          <ProjectSummary/>
-          <ProjectSummary/>
-          <ProjectSummary/>
-          <ProjectSummary/>
+          {data && data.map(project=>
+          {
+          return <ProjectSummary key={project.id} title={project.title}/>
+              
+          }
+          )}
         </div>
     );
 
