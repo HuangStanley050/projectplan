@@ -7,7 +7,7 @@ const ProjectList = ({ data }) => { //destructure data property from props passe
         <div className="project-list section">
           {data && data.map(project=>
           {
-          return <ProjectSummary key={project.id} title={project.title}/>
+            return <ProjectSummary key={project.id} title={project.title}/>
               
           }
           )}
