@@ -1,3 +1,4 @@
+import * as actionTypes from "../actions/actionTypes";
 const initialState = {
     projects: [{
             id: 1,
@@ -17,7 +18,17 @@ const initialState = {
     ]
 }
 const reducer = (state = initialState, action) => {
-    return state;
+    switch (action.type) {
+        case actionTypes.CREATE_PROJECT:
+            return {
+                ...state,
+                projects: [...state.projects, action.project]
+            };
+        default:
+            return state;
+
+    }
+
 };
 
 export default reducer;
