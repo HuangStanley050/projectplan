@@ -1,1 +1,3 @@
 export const CREATE_PROJECT = 'CREATE_PROJECT';
+export const CREATE_SUCCESS = 'CREATE_SUCCESS';
+export const CREATE_FAIL = 'CREATE_FAIL';
