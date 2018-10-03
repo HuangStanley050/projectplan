@@ -8,6 +8,8 @@
 4. Redux-thunk
 5. Firebase Firestore
 6. Firebase Cloud Function
+7. react-redux-firebase
+8. redux-firestore
 
 ---
 
