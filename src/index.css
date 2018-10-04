@@ -24,3 +24,9 @@ form button,
 form h5 {
   margin: 20px 0;
 }
+
+.preloader-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}

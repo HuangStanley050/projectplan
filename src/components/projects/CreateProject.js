@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Loader from "../ui/loader";
 import * as actions from "../../store/actions/projectActions";
 
 class CreateProject extends Component {
@@ -19,8 +20,17 @@ class CreateProject extends Component {
         this.props.createProject(this.state);
     }
     render() {
+        /*let loading;
+        if (this.props.loading) {
+            loading = <Loader/>;
+        }
+        else {
+            loading = null;
+        }*/
+
         return (
             <div className="container">
+                {this.props.loading?<Loader/>:null}
                 <form onSubmit={this.submitHandler} className="white">
                     <h4 className="grey-text">Create Project</h4>
                     <div className="input-field">
@@ -34,7 +44,7 @@ class CreateProject extends Component {
                         <textarea onChange={this.inputHandler} id="content" className="materialize-textarea"/>
                     </div>
                     <div className="input-field">
-                        <button className="btn grey z-depth-0">Create</button>
+                        <button className="btn waves-effect waves-light grey z-depth-0" type="submit">Create</button>
                     </div>
                 </form>
             </div>
@@ -42,10 +52,16 @@ class CreateProject extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        loading: state.project.loading
+    };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
         createProject: (project) => dispatch(actions.createProject(project))
     };
 };
 
-export default connect(null, mapDispatchToProps)(CreateProject);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProject);

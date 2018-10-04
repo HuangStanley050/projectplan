@@ -8,6 +8,7 @@ import SignIn from "./components/auth/Signin";
 import SignUp from "./components/auth/Signup";
 import CreateProject from "./components/projects/CreateProject";
 //import './App.css';
+//import Loader from "./components/ui/loader";
 
 class App extends Component {
     render() {

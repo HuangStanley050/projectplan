@@ -1,9 +1,16 @@
 import * as actionTypes from "./actionTypes";
 
-const success = () => {
-    console.log("success");
+const startCreate = () => {
     return {
-        type: actionTypes.CREATE_SUCCESS,
+        type: actionTypes.CREATE_START
+
+    };
+}
+
+const success = () => {
+    //console.log("success");
+    return {
+        type: actionTypes.CREATE_SUCCESS
 
     };
 };
@@ -16,19 +23,21 @@ const fail = (err) => {
 };
 
 export const createProject = (project) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
+    return (dispatch, getState, { getFirestore }) => {
         //type: actionTypes.CREATE_PROJECT,
         //project: project
+
         const firestore = getFirestore();
+        dispatch(startCreate());
         firestore.collection('projects').add({
                 ...project,
-                authorFirstName: 'Jake',
-                authorLastName: 'Blow',
-                authorId: 23,
+                authorFirstName: 'Jason',
+                authorLastName: 'Chew',
+                authorId: 89,
                 createdAt: new Date()
 
             })
             .then(dispatch(success()))
-            .catch(err => { dispatch(fail(err)) });
+            .catch(err => dispatch(fail(err)));
     };
 };
