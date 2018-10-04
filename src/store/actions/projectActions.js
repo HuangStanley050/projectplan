@@ -16,7 +16,7 @@ const fail = (err) => {
 };
 
 export const createProject = (project) => {
-    return (dispatch, { getFirebase, getFirestore }) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
         //type: actionTypes.CREATE_PROJECT,
         //project: project
         const firestore = getFirestore();

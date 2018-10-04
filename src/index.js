@@ -21,8 +21,8 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer,
     composeEnhancers(applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore }))),
-    reactReduxFirebase(firebaseConfig),
     reduxFirestore(firebaseConfig),
+    reactReduxFirebase(firebaseConfig),
 );
 
 const app = (
