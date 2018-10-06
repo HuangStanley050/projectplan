@@ -31,9 +31,9 @@ export const createProject = (project) => {
         dispatch(startCreate());
         firestore.collection('projects').add({
                 ...project,
-                authorFirstName: 'Jason',
-                authorLastName: 'Chew',
-                authorId: 89,
+                authorFirstName: 'Kate',
+                authorLastName: 'Bush',
+                authorId: 443,
                 createdAt: new Date()
 
             })
