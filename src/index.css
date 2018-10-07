@@ -30,3 +30,8 @@ form h5 {
   left: 50%;
   top: 50%;
 }
+
+.loading {
+  color: red;
+  text-align: center;
+}
