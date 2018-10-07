@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { firestoreConnect } from "react-redux-firebase";
+import { convert } from "../../helpers/convertTime";
 import { compose } from "redux";
 
 const ProjectDetails = (props) => {
@@ -15,12 +16,12 @@ const ProjectDetails = (props) => {
                 <div className="card-content">
                  <span className="card-title">Project Title - {props.project.title}</span>
                  <p>
-                  Bacon ipsum dolor amet beef buffalo corned beef, frankfurter picanha swine doner bacon tri-tip. Pancetta venison t-bone, corned beef pig andouille beef fatback jerky tail chuck meatloaf pastrami buffalo shoulder. Ground round sausage bacon strip steak, swine tail andouille ribeye brisket turducken salami cupim hamburger. Shank beef ground round tail pancetta, bresaola tongue short ribs biltong ham strip steak picanha.
+                  {props.project.content}
                  </p>
                 </div>
                 <div className="card-action grey lighten-3 black-text">
                  <div>Posted by {props.project.authorFirstName} {props.project.authorLastName}</div>
-                 <div>Posted on September 29th</div>
+                 <div>Posted on {convert(props.project.createdAt.seconds)}</div>
                 </div>
             </div>
         </div>
@@ -36,6 +37,7 @@ const mapStateToProps = (state, ownProps) => {
     //console.log(state);
     const id = ownProps.match.params.id;
     const projects = state.firestore.data.projects;
+    //again checking to see the the data is available 
     const project = projects ? projects[id] : null;
     return {
         project: project
