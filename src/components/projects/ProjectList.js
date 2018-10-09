@@ -10,11 +10,11 @@ const ProjectList = ({ data }) => { //destructure data property from props passe
   return (
     <div className="project-list section">
           {data && data.map(project=>
-          { console.log(project.id);
+          { //console.log(project.id);
             //let time = convert(project.creatAt.seconds);
-            return <Link key={project.title} to={"/project/"+project.id}>
+            return <Link key={project.id} to={"/project/"+project.id}>
                       <ProjectSummary 
-                        key={project.id} 
+                        
                         title={project.title} 
                         authorFirstname={project.authorFirstName} 
                         authorLastname={project.authorLastName}

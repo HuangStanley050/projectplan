@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import * as actions from "../../store/actions/authActions";
+import { connect } from "react-redux";
 
 class SignIn extends Component {
     state = {
@@ -14,6 +16,7 @@ class SignIn extends Component {
     submitHandler = (e) => {
         e.preventDefault();
         console.log(this.state);
+        this.props.onLogin(this.state.email, this.state.password);
     }
     render() {
         return (
@@ -21,17 +24,17 @@ class SignIn extends Component {
                 <form onSubmit={this.submitHandler} className="white">
                     <h4 className="grey-text">Sign In</h4>
                     <div className="input-field">
-                        <label for="email">Email</label>
+                        <label htmlFor="email">Email</label>
                         <br/>
                         <input onChange={this.inputHandler} id="email" type="email" />
                     </div>
                     <div className="input-field">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <br/>
                         <input onChange={this.inputHandler} id="password" type="password"/>
                     </div>
                     <div className="input-field">
-                     <button className="btn grey z-depth-0">Login</button>
+                     <button className="btn waves-effect waves-light grey z-depth-0">Login</button>
                     </div>
                 </form>
             </div>
@@ -40,4 +43,10 @@ class SignIn extends Component {
     }
 }
 
-export default SignIn;
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin: (email, password) => dispatch(actions.login(email, password))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(SignIn);
