@@ -12,14 +12,19 @@ export const loginSuccess = () => {
     };
 };
 
-export const loginFail = () => {
+export const loginFail = (err) => {
     return {
-        type: actionTypes.LOGIN_FAIL
+        type: actionTypes.LOGIN_FAIL,
+        msg: err
     };
 };
 
 export const login = (email, password) => {
-    return dispatch => {
+    return (dispatch, getState, { getFirebase }) => {
+        const firebase = getFirebase();
         dispatch(loginStart());
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(res => dispatch(loginSuccess()))
+            .catch(err => dispatch(loginFail(err.message)));
     };
 };

@@ -1,7 +1,8 @@
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
-    email: null,
-    password: null
+    authStatus: false,
+    error: null
+
 };
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -9,6 +10,17 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state
 
+            };
+        case actionTypes.LOGIN_SUCCESS:
+            return {
+                ...state,
+                authStatus: true
+            };
+        case actionTypes.LOGIN_FAIL:
+            return {
+                ...state,
+                authStatus: false,
+                error: action.msg
             };
         default:
             return state;
