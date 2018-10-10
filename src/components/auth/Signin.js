@@ -40,7 +40,7 @@ class SignIn extends Component {
                     </div>
                     <div className="input-field">
                      <button className="btn waves-effect waves-light grey z-depth-0">Login</button>
-                     <h4 className="red-text center">{loginError}</h4>
+                     <div className="red-text center">{loginError}</div>
                     </div>
                 </form>
             </div>
