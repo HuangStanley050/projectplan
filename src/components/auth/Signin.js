@@ -15,13 +15,18 @@ class SignIn extends Component {
     }
     submitHandler = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        //console.log(this.state);
         this.props.onLogin(this.state.email, this.state.password);
     }
     render() {
+        let loginError = null;
+        if (this.props.error) {
+            loginError = <h1>{this.props.error}</h1>;
+        }
         return (
             <div className="container">
                 <form onSubmit={this.submitHandler} className="white">
+                    
                     <h4 className="grey-text">Sign In</h4>
                     <div className="input-field">
                         <label htmlFor="email">Email</label>
@@ -35,6 +40,7 @@ class SignIn extends Component {
                     </div>
                     <div className="input-field">
                      <button className="btn waves-effect waves-light grey z-depth-0">Login</button>
+                     <h4 className="red-text center">{loginError}</h4>
                     </div>
                 </form>
             </div>
@@ -43,10 +49,16 @@ class SignIn extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        error: state.auth.error
+    };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
         onLogin: (email, password) => dispatch(actions.login(email, password))
     };
 };
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

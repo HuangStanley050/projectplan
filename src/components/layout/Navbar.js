@@ -5,7 +5,7 @@ import SignedOutLink from "./SignedOutLinks";
 import { connect } from "react-redux";
 
 const Navbar = (props) => {
-
+    //console.log(props);
     return (
         <nav>
             <div className="nav-wrapper blue darken-2">
@@ -20,7 +20,8 @@ const Navbar = (props) => {
 const mapStateToProps = state => {
     //console.log(state);
     return {
-        auth: state.auth.authStatus
+        auth: state.auth.authStatus,
+        fireAuth: state.firebase.auth
     };
 };
 

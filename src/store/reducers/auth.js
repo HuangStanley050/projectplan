@@ -14,7 +14,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.LOGIN_SUCCESS:
             return {
                 ...state,
-                authStatus: true
+                authStatus: true,
+                error: null
             };
         case actionTypes.LOGIN_FAIL:
             return {

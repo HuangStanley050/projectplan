@@ -28,3 +28,9 @@ export const login = (email, password) => {
             .catch(err => dispatch(loginFail(err.message)));
     };
 };
+
+export const logout = () => {
+    return (dispatch, getState, { getFirebase }) => {
+
+    };
+};
