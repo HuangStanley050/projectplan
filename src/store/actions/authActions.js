@@ -33,6 +33,19 @@ export const logoutFail = (err) => {
     };
 };
 
+export const signupSuccess = () => {
+    return {
+        type: actionTypes.SIGNUP_SUCCESS
+    };
+};
+
+export const signupFail = (err) => {
+    return {
+        type: actionTypes.SIGNUP_FAIL,
+        msg: err
+    };
+};
+
 export const login = (email, password) => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();
@@ -49,5 +62,14 @@ export const logout = () => {
         firebase.auth().signOut()
             .then(res => dispatch(logoutSuccess()))
             .catch(err => dispatch(logoutFail(err)));
+    };
+};
+
+export const signup = (email, password) => {
+    return (dispatch, getState, { getFirebase }) => {
+        const firebase = getFirebase();
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(dispatch(signupSuccess()))
+            .catch(err => dispatch(signupFail(err)));
     };
 };

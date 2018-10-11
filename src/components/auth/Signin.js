@@ -21,7 +21,7 @@ class SignIn extends Component {
     render() {
         let loginError = null;
         if (this.props.error) {
-            loginError = <h1>{this.props.error}</h1>;
+            loginError = <h3>{this.props.error}</h3>;
         }
         return (
             <div className="container">

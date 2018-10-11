@@ -34,6 +34,17 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: action.msg
             };
+        case actionTypes.SIGNUP_SUCCESS:
+            return {
+                ...state,
+                authStatus: true
+            };
+        case actionTypes.SIGNUP_FAIL:
+            return {
+                ...state,
+                authStatus: false,
+                error: action.msg
+            }
         default:
             return state;
     }
