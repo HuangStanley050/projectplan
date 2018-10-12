@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as actions from "../../store/actions/authActions";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 class SignIn extends Component {
@@ -20,11 +21,17 @@ class SignIn extends Component {
     }
     render() {
         let loginError = null;
+        let redirect = null;
+        let login = this.props.isLogin;
         if (this.props.error) {
-            loginError = <h3>{this.props.error}</h3>;
+            loginError = <h5>{this.props.error}</h5>;
+        }
+        if (login) {
+            redirect = <Redirect to="/"/>;
         }
         return (
             <div className="container">
+                {redirect}
                 <form onSubmit={this.submitHandler} className="white">
                     
                     <h4 className="grey-text">Sign In</h4>
@@ -51,7 +58,8 @@ class SignIn extends Component {
 
 const mapStateToProps = state => {
     return {
-        error: state.auth.error
+        error: state.auth.error,
+        isLogin: state.auth.authStatus
     };
 };
 
