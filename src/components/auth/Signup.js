@@ -22,10 +22,16 @@ class SignUp extends Component {
         this.props.signup(this.state.email, this.state.password);
     }
     render() {
+
+        let error = this.props.error;
         let login = this.props.isLogin;
+        let error_msg = null;
         let redirect = null;
         if (login) {
             redirect = <Redirect to="/"/>;
+        }
+        if (error) {
+            error_msg = <h5 className="red-text center">{error.message}</h5>;
         }
 
         return (
@@ -55,6 +61,7 @@ class SignUp extends Component {
                     </div>
                     <div className="input-field">
                      <button className="btn waves-effect waves-light grey z-depth-0">Sign Up!</button>
+                     {error_msg}
                     </div>
                 </form>
             </div>
@@ -65,7 +72,8 @@ class SignUp extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLogin: state.auth.authStatus
+        isLogin: state.auth.authStatus,
+        error: state.auth.error
     };
 };
 

@@ -69,7 +69,7 @@ export const signup = (email, password) => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(dispatch(signupSuccess()))
+            .then(res => dispatch(signupSuccess()))
             .catch(err => dispatch(signupFail(err)));
     };
 };
