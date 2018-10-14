@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
     authStatus: false,
+    userID: null,
     error: null
 
 };
@@ -15,6 +16,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 authStatus: true,
+                userID: action.userID,
                 error: null
             };
         case actionTypes.LOGIN_FAIL:
@@ -37,14 +39,15 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SIGNUP_SUCCESS:
             return {
                 ...state,
-                authStatus: true
+                authStatus: true,
+                userID: action.userID
             };
         case actionTypes.SIGNUP_FAIL:
             return {
                 ...state,
                 authStatus: false,
                 error: action.msg
-            }
+            };
         default:
             return state;
     }

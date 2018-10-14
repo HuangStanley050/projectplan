@@ -20,8 +20,8 @@ const Navbar = (props) => {
 const mapStateToProps = state => {
     //console.log(state);
     return {
-        auth: state.auth.authStatus,
-        fireAuth: state.firebase.auth
+        auth: state.auth.authStatus
+
     };
 };
 

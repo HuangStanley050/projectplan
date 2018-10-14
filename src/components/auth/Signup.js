@@ -19,7 +19,7 @@ class SignUp extends Component {
     submitHandler = (e) => {
         e.preventDefault();
         //console.log(this.state);
-        this.props.signup(this.state.email, this.state.password);
+        this.props.signup(this.state.email, this.state.password, this.state.firstName, this.state.lastName);
     }
     render() {
 
@@ -79,7 +79,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        signup: (email, password) => dispatch(actions.signup(email, password))
+        signup: (email, password, firstName, lastName) => dispatch(actions.signup(email, password, firstName, lastName))
     };
 };
 

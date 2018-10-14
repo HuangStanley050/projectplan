@@ -6,9 +6,10 @@ export const loginStart = () => {
     };
 };
 
-export const loginSuccess = () => {
+export const loginSuccess = (userID) => {
     return {
-        type: actionTypes.LOGIN_SUCCESS
+        type: actionTypes.LOGIN_SUCCESS,
+        userID: userID
     };
 };
 
@@ -33,9 +34,10 @@ export const logoutFail = (err) => {
     };
 };
 
-export const signupSuccess = () => {
+export const signupSuccess = (userID) => {
     return {
-        type: actionTypes.SIGNUP_SUCCESS
+        type: actionTypes.SIGNUP_SUCCESS,
+        userID: userID
     };
 };
 
@@ -51,7 +53,7 @@ export const login = (email, password) => {
         const firebase = getFirebase();
         dispatch(loginStart());
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(res => dispatch(loginSuccess()))
+            .then(res => dispatch(loginSuccess(res.user.uid)))
             .catch(err => dispatch(loginFail(err.message)));
     };
 };
@@ -65,11 +67,27 @@ export const logout = () => {
     };
 };
 
-export const signup = (email, password) => {
-    return (dispatch, getState, { getFirebase }) => {
+export const signup = (email, password, firstName, lastName) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firebase = getFirebase();
+        const firestore = getFirestore();
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(res => dispatch(signupSuccess()))
+            .then(res => {
+                //console.log(res.user.uid); //userID
+                dispatch(signupSuccess(res.user.uid));
+
+                return res.user.uid;
+            })
+            .then(res => {
+                firestore.collection('users').add({
+                        firstName: firstName,
+                        lastName: lastName,
+                        uid: res
+                    })
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err));
+            })
             .catch(err => dispatch(signupFail(err)));
+
     };
 };
