@@ -21,7 +21,7 @@ class SignIn extends Component {
     }
     render() {
         let loginError = null;
-        let redirect = null;
+        //let redirect = null;
         let login = this.props.isLogin;
         if (this.props.error) {
             loginError = <h5>{this.props.error}</h5>;

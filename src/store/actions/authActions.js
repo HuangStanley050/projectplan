@@ -79,10 +79,10 @@ export const signup = (email, password, firstName, lastName) => {
                 return res.user.uid;
             })
             .then(res => {
-                firestore.collection('users').add({
+                firestore.collection('users').doc(res).set({
                         firstName: firstName,
                         lastName: lastName,
-                        uid: res
+                        initials: firstName[0] + lastName[0]
                     })
                     .then(res => console.log(res))
                     .catch(err => console.log(err));
