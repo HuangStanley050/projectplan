@@ -10,7 +10,7 @@ const Navbar = (props) => {
         <nav>
             <div className="nav-wrapper blue darken-2">
                 <Link to="/" className="brand-logo">Project Plan</Link>
-                {props.auth?<SignedInLink/>:null}
+                {props.auth?<SignedInLink initials={props.initials}/>:null}
                 {!props.auth?<SignedOutLink/>:null}
             </div>
         </nav>
@@ -19,8 +19,13 @@ const Navbar = (props) => {
 
 const mapStateToProps = state => {
     //console.log(state);
+    let initials = null;
+    if (state.firebase.profile) {
+        initials = state.firebase.profile.initials;
+    }
     return {
-        auth: state.auth.authStatus
+        auth: state.auth.authStatus,
+        initials: initials
 
     };
 };

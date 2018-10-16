@@ -61,7 +61,7 @@ const mapStateToProps = state => {
     return {
         error: state.auth.error,
         isLogin: state.auth.authStatus,
-        auth: state.firebase.auth
+        auth: state.firebase.auth.uid
     };
 };
 
