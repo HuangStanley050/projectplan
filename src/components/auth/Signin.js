@@ -27,11 +27,12 @@ class SignIn extends Component {
             loginError = <h5>{this.props.error}</h5>;
         }
         if (login) {
-            redirect = <Redirect to="/"/>;
+            return <Redirect to="/"/>;
         }
+        //console.log(this.props.auth);
         return (
             <div className="container">
-                {redirect}
+                {/*{redirect}*/}
                 <form onSubmit={this.submitHandler} className="white">
                     
                     <h4 className="grey-text">Sign In</h4>
@@ -59,7 +60,8 @@ class SignIn extends Component {
 const mapStateToProps = state => {
     return {
         error: state.auth.error,
-        isLogin: state.auth.authStatus
+        isLogin: state.auth.authStatus,
+        auth: state.firebase.auth
     };
 };
 

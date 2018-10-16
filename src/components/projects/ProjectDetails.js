@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from "react-redux-firebase";
 import { convert } from "../../helpers/convertTime";
 import { compose } from "redux";
+import { Redirect } from "react-router-dom";
 
 const ProjectDetails = (props) => {
 
     //insert props.project? to check if the property are valid at the stage of fetching
     const NotReady = <h1 className="loading">Loading....</h1>;
-
+    if (!props.auth) {
+        return <Redirect to="/signin"/>;
+    }
     if (props.project) {
         return (
             <div className="container sction project-details">
@@ -25,7 +28,7 @@ const ProjectDetails = (props) => {
                 </div>
             </div>
         </div>
-        )
+        );
     }
 
     else {
@@ -40,7 +43,8 @@ const mapStateToProps = (state, ownProps) => {
     //again checking to see the the data is available 
     const project = projects ? projects[id] : null;
     return {
-        project: project
+        project: project,
+        auth: state.auth.authStatus
     };
 };
 

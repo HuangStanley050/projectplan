@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Loader from "../ui/loader";
 import * as actions from "../../store/actions/projectActions";
+import { Redirect } from "react-router-dom";
 
 class CreateProject extends Component {
     state = {
@@ -20,13 +21,9 @@ class CreateProject extends Component {
         this.props.createProject(this.state);
     }
     render() {
-        /*let loading;
-        if (this.props.loading) {
-            loading = <Loader/>;
+        if (!this.props.auth) {
+            return <Redirect to="/signin"/>;
         }
-        else {
-            loading = null;
-        }*/
 
         return (
             <div className="container">
@@ -54,7 +51,8 @@ class CreateProject extends Component {
 
 const mapStateToProps = state => {
     return {
-        loading: state.project.loading
+        loading: state.project.loading,
+        auth: state.auth.authStatus
     };
 };
 
