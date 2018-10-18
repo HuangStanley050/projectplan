@@ -23,17 +23,19 @@ const fail = (err) => {
 };
 
 export const createProject = (project) => {
-    return (dispatch, getState, { getFirestore }) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
         //type: actionTypes.CREATE_PROJECT,
         //project: project
-
+        const profile = getState().firebase.profile;
+        const authorId = getState().firebase.auth.uid;
         const firestore = getFirestore();
         dispatch(startCreate());
+
         firestore.collection('projects').add({
                 ...project,
-                authorFirstName: 'Kate',
-                authorLastName: 'Bush',
-                authorId: 443,
+                authorFirstName: profile.firstName,
+                authorLastName: profile.lastName,
+                authorId: authorId,
                 createdAt: new Date()
 
             })
