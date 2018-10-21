@@ -1,23 +1,8 @@
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
-    loading: false,
-    projects: [{
-            id: 1,
-            title: "help with homework",
-            content: "blah blah blah"
-        },
-        {
-            id: 2,
-            title: "clean your room",
-            content: "asdfdsaf  dsafdsafsaf"
-        },
-        {
-            id: 3,
-            title: "wash clothes",
-            content: "adsfdsafdsaf"
-        }
-    ]
-}
+    loading: false
+
+};
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
