@@ -38,4 +38,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default compose(firestoreConnect([{ collection: "projects" }]), connect(mapStateToProps))(DashBoard);
+export default compose(firestoreConnect([{ collection: "projects" }, { collection: 'notifications' }]), connect(mapStateToProps))(DashBoard);
