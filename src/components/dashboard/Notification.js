@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Notifications = (props) => {
     return (
         <div className="section">
@@ -7,10 +8,14 @@ const Notifications = (props) => {
             <div className="card-content">
                 <span className="card-title">Notifications</span>
                 <ul className="notifications">
-                    <li>Notification</li>
-                    <li>Notification</li>
-                    <li>Notification</li>
-                    <li>Notification</li>
+                    {props.notifications && props.notifications.map(notification=>{
+                        return (
+                            <li key={notification.id}>
+                                <span className="red-text">{notification.user}</span>
+                                <span> {notification.content}</span>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
           </div>
